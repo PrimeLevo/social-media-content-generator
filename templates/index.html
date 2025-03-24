@@ -29,6 +29,9 @@
             color: #0d6efd;
             margin-bottom: 30px;
         }
+        .generated-content {
+            white-space: pre-line;
+        }
     </style>
 </head>
 <body>
@@ -63,8 +66,8 @@
         {% if result %}
             <div class="content-box mt-4">
                 <h4>Generated Content:</h4>
-                <div class="p-3 bg-white border rounded">
-                    {{ result|replace('\n', '<br>')|safe }}
+                <div class="p-3 bg-white border rounded generated-content">
+                    {{ result }}
                 </div>
                 <div class="mt-3 d-grid gap-2">
                     <button class="btn btn-outline-primary" onclick="copyToClipboard()">Copy to Clipboard</button>
@@ -75,7 +78,7 @@
 
     <script>
         function copyToClipboard() {
-            const content = document.querySelector('.content-box .bg-white').innerText;
+            const content = document.querySelector('.content-box .generated-content').innerText;
             navigator.clipboard.writeText(content).then(() => {
                 alert('Content copied to clipboard!');
             });
